@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Unidad 2 · Actividades & Deseos · Veinticuatro A2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@400;500;600;700;800&family=Caveat:wght@500;700&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & BASE ============ */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1a1a;
+  --cream:#faf6ef;
+  --paper:#fdfbf6;
+  --terracotta:#d4623f;
+  --terracotta-dark:#a8482b;
+  --mustard:#e8b04b;
+  --olive:#6b7a3f;
+  --sky:#3a6b8a;
+  --plum:#7d3c5e;
+  --line:rgba(26,26,26,.12);
+  --shadow-soft:0 8px 30px rgba(26,26,26,.06);
+  --shadow-md:0 18px 50px rgba(26,26,26,.12);
+}
+html,body{background:var(--cream);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;scroll-behavior:smooth;overflow-x:hidden;width:100%}
+img{max-width:100%;display:block}
+a{color:var(--sky)}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100vh;background:linear-gradient(135deg,#1a1a1a 0%,#3d2418 50%,#a8482b 100%);
+  color:#fff;position:relative;overflow:hidden;display:flex;align-items:center;padding:80px 24px
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 20% 80%,rgba(232,176,75,.15) 0%,transparent 50%),
+             radial-gradient(circle at 80% 20%,rgba(212,98,63,.2) 0%,transparent 50%);
+  pointer-events:none
+}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:2;display:grid;grid-template-columns:1.3fr 1fr;gap:60px;align-items:center}
+.hero h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2.5rem,7vw,5.5rem);line-height:.95;letter-spacing:-2px;margin-bottom:20px}
+.hero h1 em{font-style:italic;color:var(--mustard);font-weight:700}
+.hero .kicker{font-family:'Caveat',cursive;font-size:1.6rem;color:var(--mustard);margin-bottom:14px;display:block}
+.hero .desc{font-size:1.1rem;line-height:1.7;opacity:.92;max-width:520px;margin-bottom:30px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:50px;
+  font-weight:700;text-decoration:none;transition:.25s;font-size:.95rem;letter-spacing:.3px;
+  border:2px solid transparent;cursor:pointer;font-family:inherit
+}
+.btn-primary{background:var(--terracotta);color:#fff}
+.btn-primary:hover{background:var(--terracotta-dark);transform:translateY(-2px);box-shadow:0 10px 25px rgba(168,72,43,.4)}
+.btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+.btn-ghost:hover{background:#fff;color:var(--ink);border-color:#fff}
+.hero-card{
+  background:rgba(255,255,255,.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.15);
+  border-radius:24px;padding:32px;position:relative;transform:rotate(-2deg)
+}
+.hero-card::after{content:"📖";position:absolute;top:-20px;right:-20px;font-size:4rem;transform:rotate(15deg)}
+.hero-card h3{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:16px;color:var(--mustard)}
+.hero-card .stat{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.hero-card .stat:last-child{border:none}
+.hero-card .stat .num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--mustard)}
+.hero-card .stat .lbl{font-size:.85rem;opacity:.8;text-align:right}
+.hero-scroll{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-size:.85rem;opacity:.7;letter-spacing:2px;text-transform:uppercase;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:40px}}
+
+/* ============ STICKY NAV ============ */
+.toc{
+  position:sticky;top:0;background:rgba(253,251,246,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);z-index:50;padding:14px 20px
+}
+.toc-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.toc-brand{font-family:'Playfair Display',serif;font-weight:900;font-size:1.2rem;color:var(--ink);white-space:nowrap}
+.toc-brand em{color:var(--terracotta);font-style:normal}
+.toc-links{display:flex;gap:4px;flex-wrap:wrap;flex:1;justify-content:center}
+.toc-links a{
+  text-decoration:none;color:var(--ink);font-weight:600;font-size:.85rem;
+  padding:6px 14px;border-radius:20px;transition:.2s;position:relative
+}
+.toc-links a:hover{background:var(--terracotta);color:#fff}
+.toc-progress{display:flex;align-items:center;gap:10px;background:#fff;padding:6px 14px;border-radius:30px;border:1px solid var(--line);font-size:.85rem;font-weight:700}
+.toc-progress-bar{width:80px;height:6px;background:var(--line);border-radius:10px;overflow:hidden}
+.toc-progress-bar div{height:100%;background:linear-gradient(90deg,var(--terracotta),var(--mustard));width:0%;transition:.4s}
+@media(max-width:680px){
+  .toc{padding:10px 12px}
+  .toc-inner{gap:8px}
+  .toc-brand{font-size:1rem}
+  .toc-links{font-size:.72rem;gap:2px;overflow-x:auto;flex-wrap:nowrap;justify-content:flex-start;padding:4px 0;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .toc-links::-webkit-scrollbar{display:none}
+  .toc-links a{padding:5px 10px;white-space:nowrap;flex-shrink:0}
+  .toc-progress{display:none}
+  .hero{padding:60px 16px 60px}
+  .hero-inner{grid-template-columns:1fr;gap:30px}
+  .hero-card{padding:22px;transform:none}
+  .hero h1{font-size:2.4rem !important;letter-spacing:-1px}
+  .hero .desc{font-size:1rem}
+  main{padding:50px 16px}
+  .lesson-title{font-size:2rem !important}
+  .divider{font-size:1.3rem;margin:50px 0 30px}
+  section{margin-bottom:50px}
+  .vocab-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+  .vocab{padding:18px 12px;min-height:140px}
+  .intro-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .intro-card{padding:20px 16px}
+  .intro-card .ico{font-size:2rem}
+  .q-item{padding:16px}
+  .q-opt{padding:8px 12px;font-size:.85rem}
+  .chat-box{padding:18px}
+  .chat-box .chat-header{margin:-18px -18px 14px;padding:12px 18px}
+  .msg{font-size:.88rem;padding:10px 14px}
+  .builder{padding:24px 20px}
+  .builder button{width:100%}
+  .sort-cols{grid-template-columns:1fr;gap:12px}
+  .fab{width:54px;height:54px;font-size:.7rem;bottom:16px;right:16px}
+  footer{padding:40px 16px 20px}
+  footer h3{font-size:1.5rem}
+}
+
+/* ============ MAIN LAYOUT ============ */
+main{max-width:1200px;margin:0 auto;padding:80px 24px}
+.lesson-num{
+  display:inline-block;font-family:'Caveat',cursive;font-size:1.4rem;color:var(--terracotta);
+  background:rgba(212,98,63,.1);padding:4px 16px;border-radius:20px;margin-bottom:14px
+}
+.lesson-title{
+  font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2.2rem,5vw,3.5rem);
+  line-height:1;letter-spacing:-1.5px;margin-bottom:16px
+}
+.lesson-title em{font-style:italic;color:var(--terracotta)}
+.lesson-deck{font-size:1.15rem;color:#555;max-width:680px;margin-bottom:50px}
+
+/* ============ SECTION ============ */
+section{margin-bottom:80px;scroll-margin-top:80px}
+
+
+.divider{
+  display:flex;align-items:center;gap:20px;margin:80px 0 40px;
+  font-family:'Playfair Display',serif;font-style:italic;font-size:1.8rem;color:var(--terracotta)
+}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* ============ INTRO CARDS ============ */
+.intro-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin:40px 0}
+.intro-card{
+  background:#fff;border-radius:18px;padding:28px;box-shadow:var(--shadow-soft);
+  border:1px solid var(--line);transition:.3s;position:relative;overflow:hidden
+}
+.intro-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md)}
+.intro-card .ico{font-size:2.5rem;margin-bottom:12px;display:block}
+.intro-card h4{font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:6px}
+.intro-card p{font-size:.9rem;color:#666}
+.intro-card .tag{position:absolute;top:14px;right:14px;background:var(--mustard);color:var(--ink);font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:12px;letter-spacing:.5px}
+
+/* ============ VOCAB CARDS ============ */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:18px;margin-top:30px}
+.vocab{
+  background:#fff;border-radius:18px;padding:24px 18px;text-align:center;cursor:pointer;
+  border:1px solid var(--line);box-shadow:var(--shadow-soft);transition:.3s;perspective:1000px;min-height:160px;position:relative
+}
+.vocab:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.vocab .face{backface-visibility:hidden;transition:transform .6s}
+.vocab .face-back{position:absolute;inset:18px;background:linear-gradient(135deg,var(--terracotta),var(--terracotta-dark));
+  color:#fff;border-radius:12px;transform:rotateY(180deg);display:flex;flex-direction:column;justify-content:center;padding:14px}
+.vocab .face-back .ar{font-family:'Caveat',cursive;font-size:1.6rem;font-weight:700;margin-bottom:6px}
+.vocab .face-back .ex{font-size:.85rem;opacity:.9;font-style:italic}
+.vocab.flipped .face-front{transform:rotateY(180deg)}
+.vocab.flipped .face-back{transform:rotateY(360deg)}
+.vocab .emoji{font-size:2.6rem;margin-bottom:8px;display:block}
+.vocab .es{font-weight:700;color:var(--ink);font-size:1rem}
+.vocab .ipa{color:#888;font-size:.78rem;margin-top:4px;font-style:italic}
+
+/* ============ TABLES ============ */
+.data-table{
+  background:#fff;border-radius:18px;overflow:hidden;box-shadow:var(--shadow-soft);
+  margin:24px 0;border:1px solid var(--line);width:100%
+}
+.data-table table{width:100%;border-collapse:collapse}
+.data-table th{background:var(--ink);color:#fff;padding:14px 18px;text-align:left;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+.data-table td{padding:14px 18px;border-bottom:1px solid var(--line);font-size:.95rem}
+.data-table tr:last-child td{border:none}
+.data-table tr:hover td{background:var(--paper)}
+.data-table .es{color:var(--terracotta);font-weight:700}
+.data-table .hi{background:rgba(232,176,75,.15)}
+.data-table caption{caption-side:top;padding:16px 18px;font-family:'Playfair Display',serif;font-style:italic;color:#666;font-size:.95rem;text-align:left}
+
+/* ============ MOBILE TABLES → CARDS ============ */
+@media(max-width:720px){
+  .data-table{border:none;background:transparent;box-shadow:none;margin:16px 0}
+  .data-table table,.data-table thead,.data-table tbody,.data-table tr,.data-table td{display:block;width:100%}
+  .data-table thead{display:none}
+  .data-table caption{background:#fff;padding:14px 18px;border-radius:14px;margin-bottom:12px;box-shadow:var(--shadow-soft);text-align:center}
+  .data-table tbody tr{
+    background:#fff;border-radius:14px;margin-bottom:12px;padding:14px;
+    box-shadow:var(--shadow-soft);border:1px solid var(--line);
+    display:grid;gap:8px
+  }
+  .data-table td{
+    border:none;padding:8px 12px;font-size:.9rem;
+    background:rgba(58,107,138,.05);border-radius:8px
+  }
+  .data-table td:before{
+    content:attr(data-label);font-weight:800;font-size:.7rem;
+    color:var(--terracotta);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:4px
+  }
+  .data-table tr:hover td{background:rgba(58,107,138,.05)}
+  .data-table .es{color:var(--terracotta);font-weight:700}
+  .data-table .hi{background:rgba(232,176,75,.15)}
+}
+
+/* ============ QUIZ BLOCKS ============ */
+.quiz{background:#fff;border-radius:18px;padding:32px;box-shadow:var(--shadow-soft);border:1px solid var(--line)}
+.q-item{padding:20px;background:var(--paper);border-radius:14px;margin-bottom:16px;border:1px solid var(--line)}
+.q-item .q-text{font-weight:600;font-size:1.05rem;margin-bottom:14px;display:flex;gap:10px;align-items:flex-start}
+.q-item .q-num{background:var(--terracotta);color:#fff;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800;flex-shrink:0}
+.q-opts{display:flex;flex-wrap:wrap;gap:10px}
+.q-opt{
+  background:#fff;border:2px solid var(--line);padding:10px 18px;border-radius:12px;
+  cursor:pointer;font-weight:600;font-family:inherit;transition:.2s
+}
+.q-opt:hover:not(:disabled){border-color:var(--terracotta);color:var(--terracotta)}
+.q-opt.correct{background:var(--olive);color:#fff;border-color:var(--olive)}
+.q-opt.wrong{background:#c0392b;color:#fff;border-color:#c0392b;animation:shake .4s}
+.q-opt:disabled{cursor:not-allowed}
+.q-explain{
+  margin-top:14px;padding:14px;background:rgba(58,107,138,.08);
+  border-left:4px solid var(--sky);border-radius:8px;font-size:.92rem;display:none
+}
+.q-explain.show{display:block}
+.q-explain b{color:var(--sky)}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+/* ============ CHAT ============ */
+.chat-wrap{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:30px;align-items:start}
+@media(max-width:760px){
+  .chat-wrap{grid-template-columns:1fr;gap:20px}
+  .timeline{padding-left:20px;margin-left:6px}
+  .tl-item::before{left:-29px;width:14px;height:14px}
+  .tl-item{padding:12px 16px}
+  .match-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .match-cell{padding:12px 8px;font-size:.85rem}
+  .quiz{padding:20px 16px}
+  .note-box{padding:14px 16px}
+  .data-table td{font-size:.88rem;padding:8px 10px}
+}
+.chat-box{
+  background:#fff;border-radius:24px;padding:24px;box-shadow:var(--shadow-soft);
+  border:1px solid var(--line);max-width:480px;margin:0 auto;width:100%
+}
+.chat-box .chat-header{
+  background:linear-gradient(135deg,var(--ink),#3d2418);color:#fff;margin:-24px -24px 18px;
+  padding:16px 24px;border-radius:24px 24px 0 0;display:flex;align-items:center;gap:10px
+}
+.chat-box .chat-header .dots{display:flex;gap:4px}
+.chat-box .chat-header .dots span{width:10px;height:10px;border-radius:50%;background:#ff5f57}
+.chat-box .chat-header .dots span:nth-child(2){background:#febc2e}
+.chat-box .chat-header .dots span:nth-child(3){background:#28c840}
+.chat-box .chat-header .url{margin-left:auto;font-size:.78rem;opacity:.7;font-family:monospace}
+.msg{padding:12px 16px;border-radius:18px;margin:8px 0;max-width:85%;line-height:1.5;font-size:.95rem;position:relative}
+.msg strong{display:block;font-size:.78rem;margin-bottom:3px;opacity:.8}
+.msg.laura{background:linear-gradient(135deg,#d4f0d8,#b8e6c0);margin-right:auto;border-bottom-left-radius:6px}
+.msg.mark{background:linear-gradient(135deg,#dceaf4,#c2d9eb);margin-left:auto;border-bottom-right-radius:6px}
+.chat-notes{background:var(--paper);border-radius:18px;padding:24px;border:1px solid var(--line)}
+.chat-notes h4{font-family:'Playfair Display',serif;margin-bottom:12px;color:var(--terracotta)}
+.chat-notes .note{padding:10px 0;border-bottom:1px dashed var(--line);font-size:.9rem}
+.chat-notes .note:last-child{border:none}
+.chat-notes .note b{color:var(--terracotta)}
+
+/* ============ BUILDER ============ */
+.builder{
+  background:linear-gradient(135deg,#fff 0%,#fef6e8 100%);border-radius:24px;padding:36px;
+  box-shadow:var(--shadow-soft);border:1px solid var(--line);margin-top:30px;position:relative;overflow:hidden
+}
+.builder::before{content:"✨";position:absolute;top:20px;right:24px;font-size:2.5rem;opacity:.4}
+.builder label{display:block;font-weight:700;font-size:.85rem;letter-spacing:.5px;text-transform:uppercase;color:#666;margin:14px 0 6px}
+.builder select{
+  width:100%;padding:14px 16px;border:2px solid var(--line);border-radius:12px;
+  font-size:1rem;font-family:inherit;background:#fff;cursor:pointer;transition:.2s
+}
+.builder select:focus{outline:none;border-color:var(--terracotta)}
+.builder button{
+  margin-top:18px;background:var(--ink);color:#fff;border:none;padding:14px 32px;
+  border-radius:30px;cursor:pointer;font-weight:700;font-family:inherit;font-size:.95rem;
+  letter-spacing:.5px;transition:.2s
+}
+.builder button:hover{background:var(--terracotta);transform:translateY(-2px);box-shadow:0 8px 20px rgba(212,98,63,.3)}
+.builder .result{
+  margin-top:20px;padding:18px 22px;background:#fff;border-radius:14px;
+  border:2px dashed var(--line);min-height:64px;font-size:1.1rem;display:flex;align-items:center;transition:.3s
+}
+.builder .result.ok{background:rgba(107,122,63,.12);border-color:var(--olive);color:var(--olive);font-weight:700}
+.builder .result.bad{background:rgba(192,57,43,.1);border-color:#c0392b;color:#c0392b;font-weight:700}
+.builder .result.empty{color:#999;font-style:italic}
+
+/* ============ MATCHING ============ */
+.match-card{
+  background:linear-gradient(135deg,#fff,#fef6e8);border-radius:24px;padding:32px;
+  box-shadow:var(--shadow-soft);border:1px solid var(--line);margin-top:30px
+}
+.match-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:18px}
+.match-cell{
+  background:#fff;border:2px solid var(--line);padding:16px 12px;border-radius:14px;
+  text-align:center;cursor:pointer;font-weight:600;transition:.2s;font-size:.95rem;user-select:none
+}
+.match-cell:hover:not(.matched):not(.wrong){border-color:var(--terracotta);transform:scale(1.03)}
+.match-cell.sel{background:var(--mustard);border-color:var(--terracotta);color:var(--ink)}
+.match-cell.matched{background:linear-gradient(135deg,var(--olive),#5a6832);color:#fff;border-color:transparent;cursor:default}
+.match-cell.wrong{background:#c0392b;color:#fff;border-color:#c0392b;animation:shake .4s}
+.match-status{text-align:center;margin-top:18px;font-weight:700;color:var(--sky);font-size:1.1rem}
+.match-reset{
+  display:block;margin:16px auto 0;background:transparent;color:var(--sky);
+  border:2px solid var(--sky);padding:8px 22px;border-radius:30px;cursor:pointer;
+  font-weight:700;font-family:inherit
+}
+.match-reset:hover{background:var(--sky);color:#fff}
+
+/* ============ TYPING / FILL ============ */
+.typing-card{
+  background:#fff;border-radius:18px;padding:24px;box-shadow:var(--shadow-soft);
+  border:1px solid var(--line);margin-top:20px
+}
+.typing-card .prompt{font-size:1.1rem;margin-bottom:12px;color:#555}
+.typing-card input{
+  width:100%;padding:14px;border:2px solid var(--line);border-radius:12px;
+  font-size:1.05rem;font-family:inherit;transition:.2s
+}
+.typing-card input:focus{outline:none;border-color:var(--terracotta)}
+.typing-card input.ok{border-color:var(--olive);background:rgba(107,122,63,.1)}
+.typing-card input.bad{border-color:#c0392b;background:rgba(192,57,43,.1)}
+.typing-card .hint{margin-top:8px;font-size:.85rem;color:#888}
+.typing-card .check-btn{
+  margin-top:12px;background:var(--terracotta);color:#fff;border:none;padding:10px 22px;
+  border-radius:30px;cursor:pointer;font-weight:700;font-family:inherit
+}
+
+/* ============ GENDER SORT ============ */
+.sort-board{
+  background:#fff;border-radius:24px;padding:30px;box-shadow:var(--shadow-soft);
+  border:1px solid var(--line);margin-top:30px
+}
+.sort-words{display:flex;flex-wrap:wrap;gap:10px;padding:20px;background:var(--paper);border-radius:14px;margin-bottom:24px;min-height:80px}
+.sort-word{
+  background:#fff;border:2px solid var(--line);padding:8px 16px;border-radius:30px;
+  cursor:pointer;font-weight:600;transition:.2s;user-select:none
+}
+.sort-word:hover{border-color:var(--terracotta)}
+.sort-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sort-col{padding:20px;border-radius:14px;min-height:140px}
+.sort-col.m{background:rgba(58,107,138,.08);border:2px dashed var(--sky)}
+.sort-col.f{background:rgba(212,98,63,.08);border:2px dashed var(--terracotta)}
+.sort-col h4{font-family:'Playfair Display',serif;text-align:center;margin-bottom:12px}
+.sort-col.m h4{color:var(--sky)}
+.sort-col.f h4{color:var(--terracotta)}
+.sort-col .word{background:#fff;padding:6px 12px;border-radius:20px;display:inline-block;margin:4px;font-weight:600;animation:pop .3s}
+@keyframes pop{0%{transform:scale(0);opacity:0}100%{transform:scale(1);opacity:1}}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink);color:#fff;padding:60px 24px 30px;text-align:center;margin-top:80px}
+footer h3{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:12px}
+footer p{opacity:.7;margin-bottom:20px}
+footer .credit{opacity:.5;font-size:.85rem;margin-top:30px}
+
+/* ============ TIMELINE ============ */
+.timeline{margin:30px 0;padding-left:30px;border-left:3px solid var(--terracotta)}
+.tl-item{position:relative;padding:14px 20px;margin-bottom:18px;background:#fff;border-radius:12px;box-shadow:var(--shadow-soft)}
+.tl-item::before{content:"";position:absolute;left:-39px;top:22px;width:16px;height:16px;border-radius:50%;background:var(--terracotta);border:3px solid #fff;box-shadow:0 0 0 2px var(--terracotta)}
+.tl-item h5{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--terracotta);margin-bottom:4px}
+.tl-item p{color:#555;font-size:.92rem}
+
+/* ============ PROGRESS RING (floating) ============ */
+.fab{
+  position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;
+  background:var(--terracotta);color:#fff;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:.85rem;box-shadow:0 10px 30px rgba(212,98,63,.4);cursor:pointer;z-index:100;
+  border:none;flex-direction:column;transition:.2s
+}
+.fab:hover{transform:scale(1.1)}
+
+/* ============ UTILITIES ============ */
+.tag{display:inline-block;background:var(--mustard);color:var(--ink);font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:12px;letter-spacing:.5px;margin-right:6px}
+.tag.sky{background:var(--sky);color:#fff}
+.tag.olive{background:var(--olive);color:#fff}
+.tag.plum{background:var(--plum);color:#fff}
+.note-box{background:linear-gradient(135deg,#fef6e8,#fff8e8);border-left:4px solid var(--mustard);padding:18px 22px;border-radius:0 14px 14px 0;margin:20px 0}
+
+/* ============ MEGA BRAND ============ */
+.mega-brand{
+  display:flex;flex-direction:column;align-items:center;gap:10px;margin:18px auto;width:100%;max-width:520px;position:relative;z-index:2
+}
+.mega-logo{
+  position:relative;display:inline-flex;align-items:center;gap:14px;
+  background:rgba(255,255,255,.98);padding:14px 32px;border-radius:60px;
+  box-shadow:0 10px 35px rgba(0,0,0,.25),inset 0 0 0 3px var(--terracotta),
+             inset 0 0 0 6px rgba(255,255,255,.9),inset 0 0 0 8px var(--terracotta);
+  transition:.3s;cursor:pointer;animation:float-y 4s ease-in-out infinite
+}
+.mega-logo:hover{transform:rotate(-2deg) scale(1.06);animation-play-state:paused}
+@keyframes float-y{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.mega-emoji{font-size:2.2rem;animation:bounce-soft 1.8s ease-in-out infinite;display:inline-block}
+@keyframes bounce-soft{0%,100%{transform:translateY(0) rotate(-10deg)}50%{transform:translateY(-6px) rotate(10deg)}}
+.mega-text{font-family:'Pacifico','Caveat',cursive;line-height:1;display:flex;align-items:baseline;gap:8px}
+.mega-text .hala{
+  font-size:2.4rem;font-weight:400;
+  background:linear-gradient(135deg,#d4623f 0%,#e8b04b 50%,#a8482b 100%);
+  background-size:200% 200%;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:grad-shift 3s ease-in-out infinite;
+  text-shadow:2px 2px 0 rgba(255,255,255,.5);
+  letter-spacing:1px
+}
+.mega-text .dot{font-size:2rem;color:var(--terracotta);-webkit-text-fill-color:var(--terracotta);
+  font-weight:900;animation:spin-dot 3s linear infinite}
+@keyframes spin-dot{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+.mega-text .ar{font-size:1.8rem;font-weight:400;color:#3a6b8a;
+  text-shadow:2px 2px 0 rgba(255,255,255,.5);letter-spacing:1px;
+  font-family:'Pacifico',cursive}
+.mega-sparkle{position:absolute;font-size:1.1rem;animation:spark 1.5s ease-in-out infinite;pointer-events:none}
+.s1{top:-8px;left:18px;animation-delay:0s}
+.s2{top:-4px;right:24px;animation-delay:.4s}
+.s3{bottom:-6px;left:50%;animation-delay:.8s}
+@keyframes spark{0%,100%{transform:scale(1) rotate(0);opacity:1}50%{transform:scale(1.4) rotate(180deg);opacity:.7}}
+@keyframes grad-shift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.mega-tagline{
+  font-family:'Caveat',cursive;font-size:1.2rem;color:#fff;font-weight:600;
+  background:rgba(0,0,0,.25);backdrop-filter:blur(8px);padding:4px 16px;
+  border-radius:20px;letter-spacing:.5px
+}
+.mega-phone{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,var(--mustard) 0%,#f5b945 100%);
+  color:var(--ink);font-weight:800;padding:10px 22px;border-radius:30px;
+  text-decoration:none;font-size:1rem;letter-spacing:.5px;
+  box-shadow:0 6px 18px rgba(232,176,75,.5),inset 0 -3px 0 rgba(0,0,0,.15);
+  transition:.2s;position:relative;border:2px solid #fff
+}
+.mega-phone:hover{transform:translateY(-3px) scale(1.03);
+  box-shadow:0 10px 25px rgba(232,176,75,.7),inset 0 -3px 0 rgba(0,0,0,.15)}
+.mega-phone:active{transform:translateY(0)}
+.mega-phone .ph-flag{font-size:1.3rem}
+.mega-phone .ph-icon{font-size:1.1rem;animation:wiggle 1.2s ease-in-out infinite}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-15deg)}75%{transform:rotate(15deg)}}
+.mega-phone .ph-num{font-family:'Inter',sans-serif;font-size:1.05rem;font-weight:800;letter-spacing:1px}
+.mega-phone .ph-tap{font-size:.7rem;background:rgba(0,0,0,.15);padding:2px 8px;
+  border-radius:10px;font-weight:700;margin-left:4px}
+.footer-brand-row{
+  display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:18px
+}
+.footer-brand{
+  display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);
+  padding:12px 24px;border-radius:50px;
+  border:2px dashed rgba(232,176,75,.4)
+}
+.footer-brand .ico{font-size:1.6rem;animation:bounce-soft 2s ease-in-out infinite}
+.footer-brand .name{
+  font-family:'Pacifico','Caveat',cursive;font-size:1.7rem;font-weight:400;
+  background:linear-gradient(135deg,var(--mustard),#fff,var(--mustard));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  letter-spacing:1.5px
+}
+.footer-brand .name .es{font-size:.7em;color:var(--mustard);-webkit-text-fill-color:var(--mustard)}
+.footer-phone{
+  display:inline-flex;align-items:center;gap:6px;
+  color:var(--mustard);font-weight:700;font-size:1rem;text-decoration:none;
+  border:1px solid var(--mustard);padding:6px 16px;border-radius:20px;transition:.2s
+}
+.footer-phone:hover{background:var(--mustard);color:var(--ink)}
+
+@media(max-width:680px){
+  .mega-logo{padding:10px 20px;gap:10px;box-shadow:0 6px 18px rgba(0,0,0,.2),inset 0 0 0 2px var(--terracotta),inset 0 0 0 4px rgba(255,255,255,.9),inset 0 0 0 6px var(--terracotta)}
+  .mega-emoji{font-size:1.7rem}
+  .mega-text .hala{font-size:1.7rem}
+  .mega-text .ar{font-size:1.3rem}
+  .mega-text .dot{font-size:1.5rem}
+  .mega-tagline{font-size:1rem;padding:3px 12px}
+  .mega-phone{padding:8px 14px;font-size:.85rem;gap:6px;flex-wrap:wrap;justify-content:center}
+  .mega-phone .ph-num{font-size:.9rem}
+  .mega-phone .ph-tap{font-size:.65rem}
+  .footer-brand{padding:10px 18px}
+  .footer-brand .name{font-size:1.4rem}
+.note-box h4{font-family:'Playfair Display',serif;color:var(--terracotta);margin-bottom:6px}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="kicker">✨ Unidad 2 · Lección interactiva</span>
+      <h1>Actividades <em>&</em><br>Deseos</h1>
+
+      <!-- MEGA BRAND -->
+      <div class="mega-brand">
+        <div class="mega-logo">
+          <div class="mega-sparkle s1">✨</div>
+          <div class="mega-sparkle s2">🌟</div>
+          <div class="mega-sparkle s3">💫</div>
+          <div class="mega-emoji">🎨</div>
+          <div class="mega-text">
+            <span class="hala">Hala</span>
+            <span class="dot">·</span>
+            <span class="ar">Arapeñol</span>
+          </div>
+        </div>
+        <div class="mega-tagline">Donde el español se vuelve arte</div>
+        <a href="tel:+201066505547" class="mega-phone">
+          <span class="ph-flag">🇪🇬</span>
+          <span class="ph-icon">📱</span>
+          <span class="ph-num" dir="ltr">+20 106 650 5547</span>
+          <span class="ph-tap">اضغط للاتصال</span>
+        </a>
+      </div>
+
+      <p class="desc">Una experiencia visual completa para dominar el español A2 — con vocabularios, gramática, chats, juegos y quizzes. Aprende a hablar de tus planes y de lo que quieres hacer en el futuro.</p>
+      <div class="hero-cta">
+        <a href="#leccion-1" class="btn btn-primary">Empezar la lección →</a>
+        <a href="#quiz-final" class="btn btn-ghost">Saltar al quiz final</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>📊 Lo que vas a aprender</h3>
+      <div class="stat"><span class="num">14</span><span class="lbl">Vocablos<br>nuevos</span></div>
+      <div class="stat"><span class="num">7</span><span class="lbl">Lecciones<br>interactivas</span></div>
+      <div class="stat"><span class="num">40+</span><span class="lbl">Ejercicios<br>prácticos</span></div>
+      <div class="stat"><span class="num">2</span><span class="lbl">Juegos<br>didácticos</span></div>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL ↓</div>
+</section>
+
+<!-- ============ TOC ============ -->
+<nav class="toc">
+  <div class="toc-inner">
+    <div class="toc-brand">V<em>24</em></div>
+    <div class="toc-links">
+      <a href="#intro">Introducción</a>
+      <a href="#leccion-1">① Planes</a>
+      <a href="#leccion-2">② Motivos</a>
+      <a href="#leccion-3">③ QUERER</a>
+      <a href="#leccion-4">④ Cultura</a>
+      <a href="#leccion-5">⑤ Géneros</a>
+      <a href="#leccion-6">⑥ Artículos</a>
+      <a href="#leccion-7">⑦ Verbos</a>
+      <a href="#chat">Chat</a>
+      <a href="#builder">Constructor</a>
+      <a href="#match">Juego</a>
+      <a href="#quiz-final">Quiz Final</a>
+    </div>
+    <div class="toc-progress">
+      <span id="progText">0%</span>
+      <div class="toc-progress-bar"><div id="progBar"></div></div>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ INTRO ============ -->
+<section id="intro">
+  <span class="lesson-num">Lección 0</span>
+  <h2 class="lesson-title">¿Qué aprenderás <em>hoy</em>?</h2>
+  <p class="lesson-deck">Esta unidad gira en torno a dos ejes: las <b>actividades</b> que hacemos en nuestro tiempo libre y los <b>deseos</b> que tenemos para el futuro. Aprenderás a hablar de planes, justificar decisiones, conjugar verbos clave y distinguir el género gramatical.</p>
+
+  <div class="intro-grid">
+    <div class="intro-card">
+      <span class="tag">Vocabulario</span>
+      <span class="ico">🎯</span>
+      <h4>Planes y deseos</h4>
+      <p>Más de 14 actividades nuevas para expresar lo que quieres hacer.</p>
+    </div>
+    <div class="intro-card">
+      <span class="tag sky">Gramática</span>
+      <span class="ico">⚙️</span>
+      <h4>QUERER + infinitivo</h4>
+      <p>El verbo más importante para hablar de intenciones.</p>
+    </div>
+    <div class="intro-card">
+      <span class="tag olive">Estructura</span>
+      <span class="ico">🧠</span>
+      <h4>Porque / Para / Por</h4>
+      <p>Cómo explicar tus motivos de forma correcta.</p>
+    </div>
+    <div class="intro-card">
+      <span class="tag plum">Cultura</span>
+      <span class="ico">🌎</span>
+      <h4>Mundo hispano</h4>
+      <p>Cursos, intercambios, personas de todo el mundo aprendiendo español.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider">Lección ①</div>
+
+<!-- ============ LECCIÓN 1: PLANES ============ -->
+<section id="leccion-1">
+  <span class="lesson-num">Lección 1 · p.24</span>
+  <h2 class="lesson-title">Este fin de <em>semana</em></h2>
+  <p class="lesson-deck">Eva tiene planes para el fin de semana. Aprende las actividades que puedes proponer a un amigo en una conversación real.</p>
+
+  <div class="data-table">
+    <table>
+      <caption>📚 Vocabulario clave — actividades de ocio</caption>
+      <thead><tr><th>Español</th><th>Significado</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr><td class="es">estudiar español</td><td>أدرس الإسبانية</td><td>Quiero <b>estudiar español</b> esta tarde.</td></tr>
+        <tr><td class="es">hacer deporte</td><td>أعمل رياضة</td><td>Eva quiere <b>hacer deporte</b>.</td></tr>
+        <tr><td class="es">ir al cine</td><td>أذهب للسينما</td><td>Vamos a <b>ir al cine</b> mañana.</td></tr>
+        <tr><td class="es">ir al teatro</td><td>أذهب للمسرح</td><td>Me gusta <b>ir al teatro</b> los domingos.</td></tr>
+        <tr><td class="es">ir a una exposición</td><td>أذهب لمعرض</td><td>Hay una <b>exposición</b> de arte moderno.</td></tr>
+        <tr><td class="es">salir a cenar</td><td>أخرج للعشاء</td><td>¿Quieres <b>salir a cenar</b> esta noche?</td></tr>
+        <tr><td class="es">salir de noche</td><td>أخرج بالليل</td><td>Los jóvenes quieren <b>salir de noche</b>.</td></tr>
+        <tr><td class="es">cocinar</td><td>أطبخ</td><td>Me gusta <b>cocinar</b> platos españoles.</td></tr>
+        <tr><td class="es">hacer fotos</td><td>أصوّر</td><td>Vamos a <b>hacer fotos</b> al atardecer.</td></tr>
+        <tr><td class="es">ir de compras</td><td>أتسوّق</td><td>El sábado voy a <b>ir de compras</b>.</td></tr>
+        <tr><td class="es">ir de excursión</td><td>أعمل رحلة</td><td>El domingo <b>iremos de excursión</b>.</td></tr>
+        <tr><td class="es">trabajar</td><td>أشتغل</td><td>No quiero <b>trabajar</b> el sábado.</td></tr>
+        <tr><td class="es">leer</td><td>أقرأ</td><td>Me encanta <b>leer</b> literatura.</td></tr>
+        <tr><td class="es">pasear</td><td>أتنزه</td><td>Vamos a <b>pasear</b> por el parque.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;margin:40px 0 10px">🃏 Flashcards — toca para voltear</h3>
+  <div class="vocab-grid" id="vocabGrid"></div>
+
+  <h3 id="builder" style="font-family:'Playfair Display',serif;font-size:1.6rem;margin:50px 0 10px">✍️ Completa con tus planes</h3>
+  <div class="builder">
+    <label>Yo (sujeto)</label>
+    <select id="b-sujeto">
+      <option>Yo</option><option>Tú</option><option>Ella</option><option>Nosotros</option><option>Ellos</option>
+    </select>
+    <label>Verbo QUERER</label>
+    <select id="b-verbo">
+      <option value="quiero">quiero</option>
+      <option value="quieres">quieres</option>
+      <option value="quiere">quiere</option>
+      <option value="queremos">queremos</option>
+      <option value="quieren">quieren</option>
+    </select>
+    <label>Actividad</label>
+    <select id="b-accion">
+      <option>bailar salsa</option>
+      <option>ir al cine</option>
+      <option>estudiar español</option>
+      <option>vivir en España</option>
+      <option>salir de noche</option>
+      <option>pasear por el parque</option>
+      <option>hacer deporte</option>
+      <option>cocinar una paella</option>
+    </select>
+    <button onclick="construirFrase()">✨ Construir mi frase</button>
+    <div class="result empty" id="b-result">Tu frase aparecerá aquí…</div>
+  </div>
+</section>
+
+<div class="divider">Lección ②</div>
+
+<!-- ============ LECCIÓN 2: MOTIVOS ============ -->
+<section id="leccion-2">
+  <span class="lesson-num">Lección 2 · p.25</span>
+  <h2 class="lesson-title">¿Por qué estudian <em>español</em>?</h2>
+  <p class="lesson-deck">Seis personas de diferentes países nos cuentan sus motivos. Aprenderás la diferencia clave entre <b>porque</b>, <b>para</b> y <b>por</b>.</p>
+
+  <div class="note-box">
+    <h4>💡 Regla de oro</h4>
+    <p><b>Porque</b> + verbo conjugado → causa real (لأنّ)<br>
+    <b>Para</b> + infinitivo → finalidad/objetivo (لكي)<br>
+    <b>Por</b> + sustantivo → motivo breve (بسبب)</p>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <h5>Tom &amp; Sam 🇯🇵</h5>
+      <p>Estudian español <b>para leer</b> manga en español y charlar con amigos hispanos.</p>
+    </div>
+    <div class="tl-item">
+      <h5>Cris 🌎</h5>
+      <p>Estudia español <b>porque</b> quiere viajar por Sudamérica el próximo año.</p>
+    </div>
+    <div class="tl-item">
+      <h5>André 🎒</h5>
+      <p>Aprende español <b>para</b> trabajar en una ONG en Colombia.</p>
+    </div>
+    <div class="tl-item">
+      <h5>Ornella 📚</h5>
+      <p>Lee literatura <b>porque</b> ama a García Márquez y Borges.</p>
+    </div>
+    <div class="tl-item">
+      <h5>Vanessa 💻</h5>
+      <p>Estudia español <b>por</b> su trabajo en una empresa internacional.</p>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;margin:50px 0 10px">🎯 Quiz — elige la opción correcta</h3>
+  <div class="quiz" id="quizPorque"></div>
+</section>
+
+<div class="divider">Lección ③</div>
+
+<!-- ============ LECCIÓN 3: QUERER ============ -->
+<section id="leccion-3">
+  <span class="lesson-num">Lección 3 · p.26</span>
+  <h2 class="lesson-title">QUERER — el verbo de los <em>deseos</em></h2>
+  <p class="lesson-deck">QUERER es irregular: la <b>e</b> cambia a <b>ie</b> en casi todas las personas, excepto en <b>nosotros</b> y <b>vosotros</b>.</p>
+
+  <div class="data-table">
+    <table>
+      <caption>📌 Conjugación completa de QUERER</caption>
+      <thead><tr><th>Pronombre</th><th>QUERER</th><th>Ejemplo en contexto</th></tr></thead>
+      <tbody>
+        <tr><td>(yo)</td><td class="es">quiero</td><td>Yo <b>quiero</b> aprender español.</td></tr>
+        <tr><td>(tú)</td><td class="es">quieres</td><td>¿Tú <b>quieres</b> ir al cine?</td></tr>
+        <tr><td>(él / ella / usted)</td><td class="es">quiere</td><td>Ella <b>quiere</b> vivir en España.</td></tr>
+        <tr class="hi"><td>(nosotros/as)</td><td class="es">queremos</td><td>Nosotros <b>queremos</b> viajar juntos.</td></tr>
+        <tr class="hi"><td>(vosotros/as)</td><td class="es">queréis</td><td>Vosotros <b>queréis</b> salir esta noche.</td></tr>
+        <tr><td>(ellos/ellas/ustedes)</td><td class="es">quieren</td><td>Ellos <b>quieren</b> bailar salsa.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-box">
+    <h4>🪄 Truco mnemotécnico</h4>
+    <p>"QUIERO" suena como <i>"ke-ro"</i> (árabe: أريد). Si recuerdas la palabra árabe, recordarás la española. ¡Magia del cognado!</p>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;margin:50px 0 10px">🎯 Quiz — conjuga QUERER</h3>
+  <div class="quiz" id="quizQuerer"></div>
+</section>
+
+<div class="divider">Lección ④</div>
+
+<!-- ============ LECCIÓN 4: CULTURA ============ -->
+<section id="leccion-4">
+  <span class="lesson-num">Lección 4 · p.25-27</span>
+  <h2 class="lesson-title">Cultura &amp; <em>estilo de vida</em></h2>
+  <p class="lesson-deck">¿Qué hacen los hispanohablantes en su tiempo libre? Cursos, intercambios, baile, literatura… ¡un mundo por descubrir!</p>
+
+  <div class="data-table">
+    <table>
+      <caption>🎓 Cursos y actividades culturales</caption>
+      <thead><tr><th>Categoría</th><th>Actividad</th><th>Descripción</th></tr></thead>
+      <tbody>
+        <tr><td><b>Cursos</b></td><td class="es">Cocina española</td><td>Aprende a cocinar paella, gazpacho, tortilla.</td></tr>
+        <tr><td></td><td class="es">Teatro</td><td>Interpretación y expresión corporal.</td></tr>
+        <tr><td></td><td class="es">Baile</td><td>Salsa, flamenco, merengue.</td></tr>
+        <tr><td></td><td class="es">Literatura</td><td>Obras españolas y latinoamericanas.</td></tr>
+        <tr><td></td><td class="es">Guitarra española</td><td>Toca flamenco y música clásica.</td></tr>
+        <tr><td><b>Club Social</b></td><td class="es">Noche de salsa</td><td>Todos los jueves en el bar del barrio.</td></tr>
+        <tr><td></td><td class="es">Partidos de liga</td><td>Ver el fútbol español con amigos.</td></tr>
+        <tr><td><b>Actividades</b></td><td class="es">Cine argentino</td><td>Esta semana: <i>El secreto de sus ojos</i>.</td></tr>
+        <tr><td></td><td class="es">Cata de vinos</td><td>Vinos españoles, argentinos y chilenos.</td></tr>
+        <tr><td></td><td class="es">Exposición</td><td>Diseño español contemporáneo.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;margin:50px 0 10px">🗣️ 7 personajes, 7 pasiones</h3>
+  <div class="data-table">
+    <table>
+      <thead><tr><th>Persona</th><th>¿Qué hace?</th><th>Frase completa</th></tr></thead>
+      <tbody>
+        <tr><td><b>Sophie</b> 📖</td><td>Lee literatura</td><td class="es">Sophie lee literatura hispanoamericana.</td></tr>
+        <tr><td><b>Alexander</b> 📖</td><td>Lee literatura</td><td class="es">Alexander lee literatura.</td></tr>
+        <tr><td><b>Noam &amp; Florent</b> 🍳</td><td>Cocinan</td><td class="es">Noam y Florent cocinan platos españoles.</td></tr>
+        <tr><td><b>Stéphane &amp; Chloé</b> 💃</td><td>Bailan</td><td class="es">Stéphane y Chloé bailan salsa.</td></tr>
+        <tr><td><b>Andrea</b> 🎧</td><td>Escucha música</td><td class="es">Andrea escucha música en español.</td></tr>
+        <tr><td><b>Henrique</b> 🎬</td><td>Ve películas</td><td class="es">Henrique ve películas españolas.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-box">
+    <h4>💬 Modelos para hablar de ti</h4>
+    <p>• <i>Yo bailo tango.</i><br>• <i>Yo leo libros de literatura hispanoamericana.</i><br>• <i>Yo cocino platos españoles los domingos.</i></p>
+  </div>
+</section>
+
+<div class="divider">Lección ⑤</div>
+
+<!-- ============ LECCIÓN 5: GÉNERO ============ -->
+<section id="leccion-5">
+  <span class="lesson-num">Lección 5 · p.28</span>
+  <h2 class="lesson-title">La playa, las playas — <em>género</em></h2>
+  <p class="lesson-deck">En español, los sustantivos tienen género: masculino (el) o femenino (la). Aprende las reglas y las excepciones.</p>
+
+  <div class="data-table">
+    <table>
+      <caption>⚖️ Reglas básicas del género</caption>
+      <thead><tr><th>Terminación</th><th>Género habitual</th><th>Ejemplos</th></tr></thead>
+      <tbody>
+        <tr><td class="es">-a</td><td>👩 Femenino</td><td>la playa · la montaña · la noche</td></tr>
+        <tr><td class="es">-o</td><td>👨 Masculino</td><td>el museo · el teatro · el cine</td></tr>
+        <tr><td class="es">-e</td><td>❓ M o F</td><td>la clase (F) · el cine (M) · la noche (F)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-box">
+    <h4>⚠️ Excepciones importantísimas</h4>
+    <p><b>Masculinos terminados en -a:</b> el idioma, el sofá, el día, el mapa, el problema, el programa.<br>
+    <b>Femeninos terminados en -o:</b> la mano, la moto, la foto, la radio.<br>
+    <b>Sustantivos comunes:</b> la gente (F), el estudiante (M), la estudiante (F).</p>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;margin:50px 0 10px">🎯 Juego — arrastra cada palabra a su columna</h3>
+  <div class="sort-board">
+    <p style="margin-bottom:14px;color:#666">Toca una palabra y luego toca la columna a la que pertenece (M = masculino, F = femenino).</p>
+    <div class="sort-words" id="sortWords"></div>
+    <div class="sort-cols">
+      <div class="sort-col m" data-col="M" onclick="sortPlace('M')">
+        <h4>👨 Masculino (el / los)</h4>
+        <div class="list" id="list-M"></div>
+      </div>
+      <div class="sort-col f" data-col="F" onclick="sortPlace('F')">
+        <h4>👩 Femenino (la / las)</h4>
+        <div class="list" id="list-F"></div>
+      </div>
+    </div>
+    <p id="sortStatus" style="text-align:center;margin-top:14px;font-weight:700"></p>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;margin:50px 0 10px">🎯 Quiz — ¿M o F?</h3>
+  <div class="quiz" id="quizGenero"></div>
+</section>
+
+<div class="divider">Lección ⑥</div>
+
+<!-- ============ LECCIÓN 6: ARTÍCULOS ============ -->
+<section id="leccion-6">
+  <span class="lesson-num">Lección 6 · p.28</span>
+  <h2 class="lesson-title">El artículo <em>determinado</em></h2>
+  <p class="lesson-deck">Los artículos definidos concuerdan en género y número con el sustantivo.</p>
+
+  <div class="data-table">
+    <table>
+      <caption>🅰️ El · La · Los · Las</caption>
+      <thead><tr><th></th><th>Singular</th><th>Plural</th></tr></thead>
+      <tbody>
+        <tr><td><b>👨 Masculino</b></td><td class="es">el</span> museo / pueblo / curso</td><td class="es">los</span> museos / pueblos / cursos</td></tr>
+        <tr><td><b>👩 Femenino</b></td><td class="es">la</span> playa / fiesta / discoteca</td><td class="es">las</span> playas / fiestas / discotecas</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-box">
+    <h4>🪄 Truco: a + el = al</h4>
+    <p><i>Voy <b>al</b> cine</i> (= a + el cine)<br>
+    <i>Vamos <b>al</b> teatro</i> (= a + el teatro)</p>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;margin:50px 0 10px">🎯 Quiz — completa con el artículo correcto</h3>
+  <div class="quiz" id="quizArticulos"></div>
+</section>
+
+<div class="divider">Lección ⑦</div>
+
+<!-- ============ LECCIÓN 7: VERBOS ============ -->
+<section id="leccion-7">
+  <span class="lesson-num">Lección 7 · p.26-27</span>
+  <h2 class="lesson-title">Verbos regulares — <em>presente</em></h2>
+  <p class="lesson-deck">Los verbos se dividen en tres familias según su terminación: <b>-AR</b>, <b>-ER</b>, <b>-IR</b>. Las conjugaciones siguen un patrón regular.</p>
+
+  <div class="data-table">
+    <table>
+      <caption>🔄 Tres modelos de conjugación</caption>
+      <thead><tr><th>Pronombre</th><th>HABLAR (-AR)</th><th>COMPRENDER (-ER)</th><th>ESCRIBIR (-IR)</th></tr></thead>
+      <tbody>
+        <tr><td>(yo)</td><td>hablo</td><td>comprendo</td><td>escribo</td></tr>
+        <tr><td>(tú)</td><td>hablas</td><td>comprendes</td><td>escribes</td></tr>
+        <tr><td>(él/ella/usted)</td><td>habla</td><td>comprende</td><td>escribe</td></tr>
+        <tr><td>(nosotros/as)</td><td>hablamos</td><td>comprendemos</td><td>escribimos</td></tr>
+        <tr><td>(vosotros/as)</td><td>habláis</td><td>comprendéis</td><td>escribís</td></tr>
+        <tr><td>(ellos/ellas/ustedes)</td><td>hablan</td><td>comprenden</td><td>escriben</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-box">
+    <h4>🪄 Truco</h4>
+    <p>Las terminaciones de <b>-ER</b> y <b>-IR</b> son iguales, excepto en <b>nosotros</b> (-emos vs -imos) y <b>vosotros</b> (-éis vs -ís). El resto coincide.</p>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;margin:50px 0 10px">🎯 Quiz — conjuga correctamente</h3>
+  <div class="quiz" id="quizVerbos"></div>
+</section>
+
+<!-- ============ CHAT ============ -->
+<section id="chat">
+  <span class="lesson-num">Lección Bonus · p.26</span>
+  <h2 class="lesson-title">Chat: Laura &amp; <em>Mark</em></h2>
+  <p class="lesson-deck">Mark es irlandés y vive en Madrid. Laura trabaja en un hotel. Buscan practicar idiomas. Lee la conversación y fíjate en los verbos <b>hablar</b>, <b>comprender</b>, <b>vivir</b>.</p>
+
+  <div class="chat-wrap">
+    <div class="chat-box">
+      <div class="chat-header">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <span style="font-weight:700">chat.def</span>
+        <span class="url">www.chat.def</span>
+      </div>
+      <div class="msg laura"><strong>Laura</strong>Hola, busco a alguien para practicar inglés.</div>
+      <div class="msg mark"><strong>Mark</strong>Hola, yo soy irlandés. Hablo inglés y estudio español.</div>
+      <div class="msg laura"><strong>Laura</strong>¿Vives en España? ¿En Madrid?</div>
+      <div class="msg mark"><strong>Mark</strong>Sí, vivo en Madrid. Estudio arquitectura en la Universidad Politécnica.</div>
+      <div class="msg laura"><strong>Laura</strong>¡Qué bien! Los dos vivimos en Madrid.</div>
+      <div class="msg laura"><strong>Laura</strong>Comprendes bien el español, ¿no?</div>
+      <div class="msg mark"><strong>Mark</strong>Sí, comprendo casi todo, pero quiero hablar mejor.</div>
+      <div class="msg mark"><strong>Mark</strong>Vivo con una chica inglesa y siempre hablamos inglés…</div>
+      <div class="msg laura"><strong>Laura</strong>Yo quiero mejorar mi inglés por mi trabajo. Trabajo en un hotel y muchos turistas no hablan español ni lo comprenden.</div>
+    </div>
+    <div class="chat-notes">
+      <h4>📝 Lo que aprendes del chat</h4>
+      <div class="note">🟢 <b>VIVIR</b>: yo vivo / tú vives / él vive / nosotros vivimos / vosotros vivís / ellos viven</div>
+      <div class="note">🟢 <b>HABLAR</b>: yo hablo / tú hablas / ella habla / nosotros hablamos / ellos hablan</div>
+      <div class="note">🟢 <b>COMPRENDER</b>: yo comprendo / tú comprendes / él comprende / nosotros comprendemos / ellos comprenden</div>
+      <div class="note">🟢 <b>QUERER</b>: yo quiero / ella quiere / nosotros queremos / ellos quieren</div>
+      <div class="note">💡 <b>Por + sustantivo</b>: "por mi trabajo" = بسبب شغلي</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MATCHING ============ -->
+<section id="match">
+  <span class="lesson-num">Lección Bonus</span>
+  <h2 class="lesson-title">Juego: empareja <em>palabras</em></h2>
+  <p class="lesson-deck">Toca una palabra en español y luego su traducción árabe. ¡Encuentra las 6 parejas!</p>
+
+  <div class="match-card">
+    <div class="match-grid" id="matchGrid"></div>
+    <div class="match-status" id="matchStatus">Empareja las 6 palabras 🧩</div>
+    <button class="match-reset" onclick="initMatching()">🔄 Reiniciar juego</button>
+  </div>
+</section>
+
+<!-- ============ QUIZ FINAL ============ -->
+<section id="quiz-final">
+  <span class="lesson-num">Examen final</span>
+  <h2 class="lesson-title">Quiz final de la <em>unidad</em></h2>
+  <p class="lesson-deck">10 preguntas para demostrar que dominas la unidad. ¡Suerte! 🍀</p>
+  <div class="quiz" id="quizFinal"></div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-brand-row">
+    <div class="footer-brand">
+      <span class="ico">🎨</span>
+      <span class="name">Hala · <span class="es">Arapeñol</span></span>
+    </div>
+    <a href="tel:+201066505547" class="footer-phone">
+      <span>🇪🇬</span>
+      <span>📱 +20 106 650 5547</span>
+    </a>
+  </div>
+
+  <h3>¡Buen trabajo! 🎉</h3>
+  <p>Has completado la Unidad 2 de Veinticuatro A2. Sigue practicando cada día y el español será tuyo.</p>
+  <p style="font-family:'Caveat',cursive;font-size:1.6rem;color:var(--mustard)">"El que quiere, puede" — El que quiere, puede.</p>
+  <div class="credit">© 2024 · <b style="color:var(--mustard)">Hala · Arapeñol</b> · Hecho con ❤️ para estudiantes de español</div>
+</footer>
+
+<button class="fab" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <span style="font-size:1.4rem">↑</span>
+  <span>TOP</span>
+</button>
+
+<script>
+/* ================== DATA ================== */
+const vocabulario = [
+  {es:"estudiar español", ar:"أتعلم الإسبانية", emoji:"📚", ipa:"es-tu-DYAR es-pa-NYOL"},
+  {es:"hacer deporte", ar:"أعمل رياضة", emoji:"🏃", ipa:"a-SER de-POR-te"},
+  {es:"ir al cine", ar:"أذهب للسينما", emoji:"🎬", ipa:"ir al SI-ne"},
+  {es:"ir al teatro", ar:"أذهب للمسرح", emoji:"🎭", ipa:"ir al te-A-tro"},
+  {es:"salir a cenar", ar:"أخرج للعشاء", emoji:"🍽️", ipa:"sa-LIR a se-NAR"},
+  {es:"salir de noche", ar:"أخرج بالليل", emoji:"🌙", ipa:"sa-LIR de NO-che"},
+  {es:"cocinar", ar:"أطبخ", emoji:"👨‍🍳", ipa:"ko-si-NAR"},
+  {es:"hacer fotos", ar:"أصوّر", emoji:"📸", ipa:"a-SER FO-tos"},
+  {es:"ir de compras", ar:"أتسوّق", emoji:"🛍️", ipa:"ir de KOM-pras"},
+  {es:"ir de excursión", ar:"أعمل رحلة", emoji:"🥾", ipa:"ir de eks-kur-SYON"},
+  {es:"trabajar", ar:"أشتغل", emoji:"💼", ipa:"tra-ba-KHAR"},
+  {es:"leer", ar:"أقرأ", emoji:"📖", ipa:"le-ER"},
+  {es:"pasear", ar:"أتنزه", emoji:"🚶", ipa:"pa-se-AR"},
+  {es:"ir a una exposición", ar:"أذهب لمعرض", emoji:"🖼️", ipa:"ir a U-na eks-po-si-SYON"}
+];
+
+/* ================== VOCAB CARDS ================== */
+function renderVocab(){
+  const g = document.getElementById("vocabGrid");
+  vocabulario.forEach((v,i)=>{
+    const c = document.createElement("div");
+    c.className = "vocab";
+    c.style.animationDelay = (i*0.05)+"s";
+    c.innerHTML = `
+      <div class="face face-front">
+        <span class="emoji">${v.emoji}</span>
+        <div class="es">${v.es}</div>
+        <div class="ipa">${v.ipa}</div>
+      </div>
+      <div class="face face-back">
+        <div class="ar">${v.ar}</div>
+        <div class="ex">"${capitalize(v.es)}"</div>
+      </div>`;
+    c.addEventListener("click",()=>c.classList.toggle("flipped"));
+    g.appendChild(c);
+  });
+}
+function capitalize(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+
+/* ================== BUILDER ================== */
+function construirFrase(){
+  const s = document.getElementById("b-sujeto").value;
+  const v = document.getElementById("b-verbo").value;
+  const a = document.getElementById("b-accion").value;
+  const out = document.getElementById("b-result");
+  const frase = `${s} ${v} ${a}.`;
+  const valid = {Yo:"quiero",Tú:"quieres",Ella:"quiere",Nosotros:"queremos",Ellos:"quieren"};
+  if(valid[s]===v){
+    out.className = "result ok";
+    out.innerHTML = "✅ " + frase;
+  }else{
+    out.className = "result bad";
+    out.innerHTML = "⚠️ " + frase + " — Verbo no concuerda con el sujeto";
+  }
+  addProgress();
+}
+
+/* ================== MATCHING ================== */
+const matchPairs = [
+  {es:"bailar salsa", ar:"أرقص سالسا"},
+  {es:"estudiar", ar:"أدرس"},
+  {es:"viajar", ar:"أسافر"},
+  {es:"trabajar", ar:"أشتغل"},
+  {es:"cocinar", ar:"أطبخ"},
+  {es:"leer", ar:"أقرأ"}
+];
+let firstPick=null, matchedCount=0;
+function initMatching(){
+  matchedCount=0; firstPick=null;
+  const grid=document.getElementById("matchGrid");
+  grid.innerHTML="";
+  const items=[];
+  matchPairs.forEach((p,i)=>{
+    items.push({txt:p.es,key:i,side:"es"});
+    items.push({txt:p.ar,key:i,side:"ar"});
+  });
+  shuffle(items).forEach(it=>{
+    const d=document.createElement("div");
+    d.className="match-cell";
+    d.textContent=it.txt;
+    d.dataset.key=it.key;
+    d.dataset.side=it.side;
+    d.addEventListener("click",()=>pickMatch(d));
+    grid.appendChild(d);
+  });
+  document.getElementById("matchStatus").textContent="Empareja las 6 palabras 🧩";
+}
+function pickMatch(el){
+  if(el.classList.contains("matched")||el.classList.contains("wrong")) return;
+  el.classList.add("sel");
+  if(!firstPick){firstPick=el;return;}
+  if(firstPick===el){el.classList.remove("sel");firstPick=null;return;}
+  const sameKey = firstPick.dataset.key===el.dataset.key && firstPick.dataset.side!==el.dataset.side;
+  if(sameKey){
+    firstPick.classList.remove("sel");el.classList.remove("sel");
+    firstPick.classList.add("matched");el.classList.add("matched");
+    matchedCount++;
+    document.getElementById("matchStatus").textContent = `🎉 ${matchedCount}/6 emparejadas`;
+    if(matchedCount===6){
+      document.getElementById("matchStatus").textContent="🏆 ¡Todas emparejadas!";
+      addProgress();
+    }
+  }else{
+    el.classList.add("wrong");firstPick.classList.add("wrong");
+    setTimeout(()=>{
+      el.classList.remove("wrong","sel");
+      firstPick.classList.remove("wrong","sel");
+      firstPick=null;
+    },700);
+    return;
+  }
+  firstPick=null;
+}
+
+/* ================== SORT GAME ================== */
+const sortList = [
+  {w:"playa",g:"F"},{w:"museo",g:"M"},{w:"casa",g:"F"},{w:"libro",g:"M"},
+  {w:"noche",g:"F"},{w:"cine",g:"M"},{w:"clase",g:"F"},{w:"idioma",g:"M"},
+  {w:"playa",g:"F"},{w:"sol",g:"M"}
+];
+let sortSel = null, sortDone = 0;
+function initSort(){
+  const c = document.getElementById("sortWords");
+  c.innerHTML=""; document.getElementById("list-M").innerHTML="";
+  document.getElementById("list-F").innerHTML="";
+  sortDone=0;
+  document.getElementById("sortStatus").textContent="";
+  shuffle(sortList).forEach(o=>{
+    const d=document.createElement("div");
+    d.className="sort-word"; d.textContent=o.w; d.dataset.g=o.g;
+    d.onclick=()=>{
+      sortSel=d;
+      document.querySelectorAll(".sort-word").forEach(x=>x.style.outline="");
+      d.style.outline="3px solid var(--mustard)";
+    };
+    c.appendChild(d);
+  });
+}
+function sortPlace(col){
+  if(!sortSel) return;
+  const w = sortSel.textContent;
+  const correct = sortSel.dataset.g===col;
+  if(correct){
+    const list = document.getElementById("list-"+col);
+    const span = document.createElement("span");
+    span.className="word";
+    span.textContent=w;
+    list.appendChild(span);
+    sortSel.style.opacity="0.3"; sortSel.style.pointerEvents="none";
+    sortDone++;
+    if(sortDone===sortList.length){
+      document.getElementById("sortStatus").innerHTML="🏆 ¡Perfecto! Todas correctas";
+      addProgress();
+    }
+  }else{
+    document.getElementById("sortStatus").innerHTML="❌ Esa palabra no es "+col+". Intenta otra vez";
+  }
+  sortSel.style.outline="";
+  sortSel=null;
+}
+
+/* ================== QUIZ BUILDER ================== */
+function shuffle(a){return[...a].sort(()=>Math.random()-.5)}
+function buildQuiz(id, qs){
+  const c = document.getElementById(id);
+  c.innerHTML="";
+  qs.forEach((q,i)=>{
+    const opts = shuffle([q.answer, ...q.wrong]);
+    const block = document.createElement("div");
+    block.className="q-item";
+    block.innerHTML = `
+      <div class="q-text"><span class="q-num">${i+1}</span><span>${q.q}</span></div>
+      <div class="q-opts">${opts.map(o=>`<button class="q-opt" data-ok="${o===q.answer}">${o}</button>`).join("")}</div>
+      <div class="q-explain">💡 <b>${q.explain}</b></div>`;
+    block.querySelectorAll(".q-opt").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        block.querySelectorAll(".q-opt").forEach(b=>b.disabled=true);
+        const ok = btn.dataset.ok==="true";
+        btn.classList.add(ok?"correct":"wrong");
+        if(!ok) block.querySelector(".q-opt[data-ok='true']").classList.add("correct");
+        block.querySelector(".q-explain").classList.add("show");
+        addProgress();
+      });
+    });
+    c.appendChild(block);
+  });
+}
+
+/* ================== QUIZZES ================== */
+buildQuiz("quizPorque",[
+  {q:"Estudio español <u>___</u> quiero vivir en España.",answer:"porque",wrong:["para","por"],explain:"porque + verbo conjugado (causa)"},
+  {q:"Aprendo salsa <u>___</u> conocer gente nueva.",answer:"para",wrong:["porque","por"],explain:"para + infinitivo (finalidad)"},
+  {q:"Estudio por la noche <u>___</u> mi trabajo.",answer:"por",wrong:["porque","para"],explain:"por + sustantivo (motivo breve)"},
+  {q:"No salgo <u>___</u> estoy cansada.",answer:"porque",wrong:["para","por"],explain:"porque + verbo conjugado (causa real)"},
+  {q:"¿Por qué quieres viajar? <u>___</u> ver la Patagonia.",answer:"Para",wrong:["Porque","Por"],explain:"Para + infinitivo (objetivo)"}
+]);
+
+buildQuiz("quizQuerer",[
+  {q:"Yo <u>___</u> bailar salsa.",answer:"quiero",wrong:["quieres","quiere","queremos"],explain:"Yo → quiero"},
+  {q:"¿Tú <u>___</u> ir al cine?",answer:"quieres",wrong:["quiero","quiere","quieren"],explain:"Tú → quieres"},
+  {q:"Ella <u>___</u> vivir en España.",answer:"quiere",wrong:["quiero","queremos","quieren"],explain:"Ella → quiere"},
+  {q:"Nosotros <u>___</u> aprender idiomas.",answer:"queremos",wrong:["quiero","quieren","queréis"],explain:"Nosotros → queremos (no cambia a ie)"},
+  {q:"Ellos <u>___</u> salir de noche.",answer:"quieren",wrong:["queremos","quiero","quiere"],explain:"Ellos → quieren"}
+]);
+
+buildQuiz("quizGenero",[
+  {q:"¿La palabra <b>playa</b> es M o F?",answer:"Femenino (F)",wrong:["Masculino (M)","Las dos"],explain:"Termina en -a → F"},
+  {q:"¿La palabra <b>curso</b> es M o F?",answer:"Masculino (M)",wrong:["Femenino (F)","Las dos"],explain:"Termina en -o → M"},
+  {q:"¿La palabra <b>museo</b> es M o F?",answer:"Masculino (M)",wrong:["Femenino (F)","Las dos"],explain:"Termina en -o → M"},
+  {q:"¿La palabra <b>noche</b> es M o F?",answer:"Femenino (F)",wrong:["Masculino (M)","Las dos"],explain:"Termina en -e pero es F: la noche"},
+  {q:"¿La palabra <b>clase</b> es M o F?",answer:"Femenino (F)",wrong:["Masculino (M)","Las dos"],explain:"Termina en -e pero es F: la clase"},
+  {q:"¿La palabra <b>cine</b> es M o F?",answer:"Masculino (M)",wrong:["Femenino (F)","Las dos"],explain:"Termina en -e pero es M: el cine"}
+]);
+
+buildQuiz("quizArticulos",[
+  {q:"<u>___</u> museo (singular, masculino)",answer:"el",wrong:["la","los","las"],explain:"M + singular → el"},
+  {q:"<u>___</u> playas (plural, femenino)",answer:"las",wrong:["el","la","los"],explain:"F + plural → las"},
+  {q:"Quiero ver <u>___</u> película nueva.",answer:"la",wrong:["el","las","los"],explain:"F + singular → la"},
+  {q:"¿Vamos a <u>___</u> cursos de teatro?",answer:"los",wrong:["el","la","las"],explain:"M + plural → los"},
+  {q:"<u>___</u> idioma español es muy bonito.",answer:"El",wrong:["La","Los","Las"],explain:"⚠️ Excepción: el idioma (M aunque termine en -a)"},
+  {q:"<u>___</u> gente de Madrid es muy simpática.",answer:"La",wrong:["El","Los","Las"],explain:"⚠️ Excepción: la gente (F)"}
+]);
+
+buildQuiz("quizVerbos",[
+  {q:"Yo <u>___</u> (hablar) español todos los días.",answer:"hablo",wrong:["hablas","habla","hablamos"],explain:"-AR, yo → -o"},
+  {q:"Tú <u>___</u> (comprender) muy bien el inglés.",answer:"comprendes",wrong:["comprendo","comprende","comprendemos"],explain:"-ER, tú → -es"},
+  {q:"Ella <u>___</u> (vivir) en Buenos Aires.",answer:"vive",wrong:["vives","vivimos","vivo"],explain:"-IR, él/ella → -e"},
+  {q:"Nosotros <u>___</u> (estudiar) juntos.",answer:"estudiamos",wrong:["estudio","estudian","estudiáis"],explain:"-AR, nosotros → -amos"},
+  {q:"Vosotros <u>___</u> (escribir) en español.",answer:"escribís",wrong:["escribo","escriben","escribimos"],explain:"-IR, vosotros → -ís"},
+  {q:"Ellos <u>___</u> (aprender) idiomas.",answer:"aprenden",wrong:["aprende","aprendo","aprendemos"],explain:"-ER, ellos → -en"}
+]);
+
+buildQuiz("quizFinal",[
+  {q:"Yo <u>___</u> (querer) aprender español.",answer:"quiero",wrong:["quieres","quiere","queremos"],explain:"QUERER irregular: e→ie"},
+  {q:"Estudio español <u>___</u> trabajar en España.",answer:"para",wrong:["porque","por"],explain:"para + infinitivo"},
+  {q:"<u>___</u> playas de España son preciosas.",answer:"Las",wrong:["El","La","Los"],explain:"F + plural → las"},
+  {q:"Anne y yo <u>___</u> (querer) viajar.",answer:"queremos",wrong:["quiero","quieren","queremos"],explain:"Nosotros → queremos"},
+  {q:"¿Cómo se dice 'لأنّني' en español?",answer:"Porque",wrong:["Para","Por","Por qué"],explain:"Porque = لأنّ"},
+  {q:"<u>___</u> idioma árabe es difícil pero bonito.",answer:"El",wrong:["La","Los","Las"],explain:"Excepción: el idioma"},
+  {q:"¿Qué palabra es masculina?",answer:"cine",wrong:["playa","noche","clase"],explain:"cine = M (excepción con -e)"},
+  {q:"Nosotros <u>___</u> (comprender) el español.",answer:"comprendemos",wrong:["comprendo","comprende","comprenden"],explain:"-ER, nosotros → -emos"},
+  {q:"¿Cuál es la traducción correcta de 'بسبب'?",answer:"Por",wrong:["Porque","Para","Por qué"],explain:"Por = بسبب (con sustantivo)"},
+  {q:"Yo <u>___</u> (vivir) en Madrid con mi familia.",answer:"vivo",wrong:["vives","vive","vivimos"],explain:"-IR, yo → -o"}
+]);
+
+/* ================== PROGRESS ================== */
+let progress = Number(localStorage.getItem("u2_progress")||0);
+const totalSections = 10;
+function paintProgress(){
+  const pct = Math.min(100, Math.round(progress/totalSections*100));
+  document.getElementById("progText").textContent = pct+"%";
+  document.getElementById("progBar").style.width = pct+"%";
+}
+function addProgress(){
+  if(progress<totalSections){
+    progress++;
+    localStorage.setItem("u2_progress",progress);
+    paintProgress();
+  }
+}
+paintProgress();
+
+/* ================== INIT ================== */
+renderVocab();
+initMatching();
+initSort();
+
+/* ================== MOBILE TABLE LABELS ================== */
+function addMobileTableLabels(){
+  if(window.innerWidth<=768) return; // skip for non-mobile check
+  document.querySelectorAll('.data-table').forEach(tbl=>{
+    const ths = tbl.querySelectorAll('thead th');
+    tbl.querySelectorAll('tbody tr').forEach(tr=>{
+      const tds = tr.querySelectorAll('td');
+      tds.forEach((td,i)=>{
+        if(ths[i] && !td.hasAttribute('data-label')){
+          td.setAttribute('data-label',ths[i].textContent.trim());
+        }
+      });
+    });
+  });
+}
+// Run on load and on resize
+addMobileTableLabels();
+window.addEventListener('resize',addMobileTableLabels);
+
+/* ================== SMOOTH SCROLL FIX ================== */
+document.querySelectorAll('.toc-links a, .hero-cta a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const href=a.getAttribute('href');
+    if(href && href.startsWith('#')){
+      const t=document.querySelector(href);
+      if(t){
+        e.preventDefault();
+        window.scrollTo({top:t.offsetTop-70,behavior:'smooth'});
+      }
+    }
+  });
+});
+
+/* ================== MOBILE TABLE LABELS ================== */
+function addMobileLabels(){
+  document.querySelectorAll('.data-table').forEach(table=>{
+    const headers = table.querySelectorAll('thead th');
+    if(!headers.length) return;
+    table.querySelectorAll('tbody tr').forEach(tr=>{
+      tr.querySelectorAll('td').forEach((td,i)=>{
+        if(headers[i] && !td.dataset.label){
+          td.dataset.label = headers[i].textContent.trim();
+        }
+      });
+    });
+  });
+}
+addMobileLabels();
+
+/* ================== SCROLL-TRACK PROGRESS ================== */
+const sections = document.querySelectorAll('section[id]');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting && en.intersectionRatio>0.3){
+      addProgress();
+    }
+  });
+},{threshold:[0.3]});
+sections.forEach(s=>observer.observe(s));
+</script>
+
+</body>
+</html>
